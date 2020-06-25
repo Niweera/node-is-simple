@@ -1,0 +1,12 @@
+{
+  "name": "node-is-simple",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "start": "pm2 start"
+  },
+  "dependencies": {
+    "chalk": "^4.1.0",
+    "express": "^4.17.1"
+  }
+}
