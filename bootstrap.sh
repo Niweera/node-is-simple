@@ -7,7 +7,7 @@
 ############################################################
 
 # Create the folders
-mkdir config controllers errors middleware models services swagger utilities
+mkdir config controllers errors middleware models services swagger utilities database
 
 # Create the index.js file
 touch index.js

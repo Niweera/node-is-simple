@@ -10,8 +10,10 @@ const SERVER_CERT = config.SERVER_CERT;
 const SERVER_KEY = config.SERVER_KEY;
 
 const app = express();
+const Middleware = require("./middleware");
 const MainController = require("./controllers");
 
+Middleware(app);
 app.use("", MainController);
 app.set("port", HTTPS_PORT);
 
@@ -39,11 +41,11 @@ const onError = error => {
 
   switch (error.code) {
     case "EACCES":
-      console.error(chalk.red(`${bind} requires elevated privileges`));
+      console.error(chalk.red(`[-] ${bind} requires elevated privileges`));
       process.exit(1);
       break;
     case "EADDRINUSE":
-      console.error(chalk.red(`${bind} is already in use`));
+      console.error(chalk.red(`[-] ${bind} is already in use`));
       process.exit(1);
       break;
     default:
@@ -54,7 +56,7 @@ const onError = error => {
 const onListening = () => {
   const addr = server.address();
   const bind = typeof addr === "string" ? `pipe ${addr}` : `port ${addr.port}`;
-  console.log(chalk.green(`Listening on HTTPS ${bind}`));
+  console.log(chalk.yellow(`[!] Listening on HTTPS ${bind}`));
 };
 
 server.listen(HTTPS_PORT);
@@ -80,7 +82,7 @@ http
   .listen(HTTP_PORT)
   .on("error", onError)
   .on("listening", () =>
-    console.log(chalk.green(`Listening on HTTP port ${HTTP_PORT}`))
+    console.log(chalk.yellow(`[!] Listening on HTTP port ${HTTP_PORT}`))
   );
 
 module.exports = app;

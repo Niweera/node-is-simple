@@ -7,5 +7,6 @@ module.exports = {
   SERVER_CERT,
   SERVER_KEY,
   HTTP_PORT: 8080,
-  HTTPS_PORT: 8081
+  HTTPS_PORT: 8081,
+  MONGO_URI: "mongodb://localhost/students"
 };
