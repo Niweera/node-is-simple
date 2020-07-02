@@ -1,12 +1,7 @@
-const fs = require("fs");
-
-const SERVER_CERT = fs.readFileSync(__dirname + "/server.cert", "utf8");
-const SERVER_KEY = fs.readFileSync(__dirname + "/server.key", "utf8");
-
 module.exports = {
-  SERVER_CERT,
-  SERVER_KEY,
-  HTTP_PORT: 8080,
-  HTTPS_PORT: 8081,
-  MONGO_URI: "mongodb://localhost/students"
+  SERVER_CERT: process.env.SERVER_CERT,
+  SERVER_KEY: process.env.SERVER_KEY,
+  HTTP_PORT: process.env.HTTP_PORT,
+  HTTPS_PORT: process.env.HTTPS_PORT,
+  MONGO_URI: process.env.MONGO_URI
 };

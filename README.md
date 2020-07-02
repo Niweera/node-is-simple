@@ -7,3 +7,5 @@
 #### [1. Node is Simple - Part 1](https://medium.com/@niweera/node-is-simple-part-1-b87a8dc390c7)
 
 #### [2. Node is Simple - Part 2](https://medium.com/@niweera/node-is-simple-part-2-b888294a00b8)
+
+#### [3. Node is Simple - Part 3](https://medium.com/@niweera/node-is-simple-part-3-56c356792d15)

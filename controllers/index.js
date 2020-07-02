@@ -29,4 +29,55 @@ router.post(
   })
 );
 
+/** @route  GET /students
+ *  @desc   Get all students
+ *  @access Public
+ */
+router.get(
+  "/students",
+  asyncWrapper(async (req, res) => {
+    const response = await studentService.getAllStudents();
+    res.send(response);
+  })
+);
+
+/** @route  GET /students/:id
+ *  @desc   Get a single student
+ *  @access Public
+ */
+router.get(
+  "/students/:id",
+  asyncWrapper(async (req, res) => {
+    const response = await studentService.getStudent(req.params.id);
+    res.send(response);
+  })
+);
+
+/** @route  PATCH /students/:id
+ *  @desc   Update a single student
+ *  @access Public
+ */
+router.patch(
+  "/students/:id",
+  asyncWrapper(async (req, res) => {
+    const response = await studentService.updateStudent(
+      req.params.id,
+      req.body
+    );
+    res.send(response);
+  })
+);
+
+/** @route  DELETE /students/:id
+ *  @desc   Delete a single student
+ *  @access Public
+ */
+router.delete(
+  "/students/:id",
+  asyncWrapper(async (req, res) => {
+    const response = await studentService.deleteStudent(req.params.id);
+    res.send(response);
+  })
+);
+
 module.exports = router;
