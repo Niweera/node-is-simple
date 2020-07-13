@@ -5,6 +5,7 @@ const studentService = new StudentService();
 const GridFSMiddleware = require("../middleware/gridfs-middleware");
 const { getGridFSFiles } = require("../database/gridfs-service");
 const { createGridFSReadStream } = require("../database/gridfs-service");
+const { NotFoundError } = require("../errors");
 
 /** @route  GET /
  *  @desc   Root endpoint
@@ -110,6 +111,17 @@ router.get(
     res.setHeader("content-type", image.contentType);
     const readStream = createGridFSReadStream(req.params.id);
     readStream.pipe(res);
+  })
+);
+
+/** @route  GET /error
+ *  @desc   Return an example error
+ *  @access Public
+ */
+router.get(
+  "/error",
+  asyncWrapper(async () => {
+    throw new NotFoundError("Sorry content not found");
   })
 );
 

@@ -9,6 +9,7 @@ module.exports = {
       name: "node-is-simple",
       script: "./index.js",
       watch: true,
+      args: ["--color"],
       env: {
         NODE_ENV: "development",
         SERVER_CERT,
