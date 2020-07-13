@@ -2,6 +2,9 @@ const router = require("express").Router();
 const asyncWrapper = require("../utilities/async-wrapper");
 const StudentService = require("../services");
 const studentService = new StudentService();
+const GridFSMiddleware = require("../middleware/gridfs-middleware");
+const { getGridFSFiles } = require("../database/gridfs-service");
+const { createGridFSReadStream } = require("../database/gridfs-service");
 
 /** @route  GET /
  *  @desc   Root endpoint
@@ -77,6 +80,36 @@ router.delete(
   asyncWrapper(async (req, res) => {
     const response = await studentService.deleteStudent(req.params.id);
     res.send(response);
+  })
+);
+
+/** @route  POST /image
+ *  @desc   Upload profile image
+ *  @access Public
+ */
+router.post(
+  "/image",
+  [GridFSMiddleware()],
+  asyncWrapper(async (req, res) => {
+    const { originalname, mimetype, id, size } = req.file;
+    res.send({ originalname, mimetype, id, size });
+  })
+);
+
+/** @route   GET /image/:id
+ *  @desc    View profile picture
+ *  @access  Public
+ */
+router.get(
+  "/image/:id",
+  asyncWrapper(async (req, res) => {
+    const image = await getGridFSFiles(req.params.id);
+    if (!image) {
+      res.status(404).send({ message: "Image not found" });
+    }
+    res.setHeader("content-type", image.contentType);
+    const readStream = createGridFSReadStream(req.params.id);
+    readStream.pipe(res);
   })
 );
 
