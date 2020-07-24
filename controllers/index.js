@@ -6,6 +6,7 @@ const GridFSMiddleware = require("../middleware/gridfs-middleware");
 const { getGridFSFiles } = require("../database/gridfs-service");
 const { createGridFSReadStream } = require("../database/gridfs-service");
 const { NotFoundError } = require("../errors");
+const protectedRoute = require("../middleware/protected-route");
 
 /** @route  GET /
  *  @desc   Root endpoint
@@ -33,12 +34,25 @@ router.post(
   })
 );
 
+/** @route  POST /sign-in
+ *  @desc   Sign In
+ *  @access Public
+ */
+router.post(
+  "/sign-in",
+  asyncWrapper(async (req, res) => {
+    const response = await studentService.signIn(req.body);
+    res.send(response);
+  })
+);
+
 /** @route  GET /students
  *  @desc   Get all students
- *  @access Public
+ *  @access Private
  */
 router.get(
   "/students",
+  [protectedRoute()],
   asyncWrapper(async (req, res) => {
     const response = await studentService.getAllStudents();
     res.send(response);

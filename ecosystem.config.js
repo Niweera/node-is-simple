@@ -16,7 +16,12 @@ module.exports = {
         SERVER_KEY,
         HTTP_PORT: 8080,
         HTTPS_PORT: 8081,
-        MONGO_URI: "mongodb://localhost/students"
+        MONGO_URI: "mongodb://localhost/students",
+        JWT_SECRET: "this_must_be_a_super_secret",
+        SIGN_ALGORITHM: "HS256",
+        TOKEN_ISSUER: "NIS_SERVER",
+        JWT_EXPIRES_IN: "1h",
+        VERIFY_ALGORITHM: ["HS256"]
       }
     }
   ]

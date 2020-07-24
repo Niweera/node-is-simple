@@ -13,3 +13,5 @@
 #### [4. Node is Simple - Part 4](https://medium.com/@niweera/node-is-simple-part-4-ee9fc494b1d8)
 
 #### [5. Node is Simple - Part 5](https://medium.com/@niweera/node-is-simple-part-5-2335d4685f67)
+
+#### [6. Node is Simple - Part 6](https://medium.com/@niweera/node-is-simple-part-6-1d9cdff1ee5a)

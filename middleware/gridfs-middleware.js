@@ -5,6 +5,6 @@ const upload = multer({
   storage
 });
 
-module.exports = function GridFSMiddleware() {
+module.exports = () => {
   return upload.single("image");
 };

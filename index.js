@@ -12,9 +12,11 @@ const SERVER_KEY = config.SERVER_KEY;
 const app = express();
 const Middleware = require("./middleware");
 const ErrorHandlingMiddleware = require("./middleware/error-handling");
+const AuthenticationMiddleware = require("./middleware/auth-middleware");
 const MainController = require("./controllers");
 
 Middleware(app);
+AuthenticationMiddleware(app);
 app.use("", MainController);
 ErrorHandlingMiddleware(app);
 app.set("port", HTTPS_PORT);
